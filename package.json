@@ -1,0 +1,64 @@
+{
+  "name": "solana-playground",
+  "version": "1.0.0",
+  "description": "Solana Playground - Monorepo containing API and Web applications",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"pnpm run dev:api\" \"pnpm run dev:web\"",
+    "dev:api": "pnpm run env:dev && pnpm --filter api run start:dev",
+    "dev:web": "pnpm --filter web run dev",
+    "build": "pnpm run build:api && pnpm run build:web",
+    "build:api": "pnpm --filter api run build",
+    "build:web": "pnpm --filter web run build",
+    "start": "concurrently \"pnpm run start:api\" \"pnpm run start:web\"",
+    "start:api": "pnpm run env:prod && pnpm --filter api run start:prod",
+    "start:web": "pnpm --filter web run start",
+    "env:dev": "cd apps/api && rm -f .env && cp .env.development .env",
+    "env:prod": "cd apps/api && rm -f .env && cp .env.production .env",
+    "env:local": "cd apps/api && rm -f .env && cp .env.local .env",
+    "test": "pnpm run test:api",
+    "test:api": "pnpm --filter api run test",
+    "test:api:e2e": "pnpm --filter api run test:e2e",
+    "test:api:watch": "pnpm --filter api run test:watch",
+    "test:api:cov": "pnpm --filter api run test:cov",
+    "lint": "pnpm run lint:api && pnpm run lint:web",
+    "lint:api": "pnpm --filter api run lint",
+    "lint:web": "pnpm --filter web run lint",
+    "lint:fix": "pnpm run lint:api && pnpm run lint:web",
+    "clean": "pnpm run clean:api && pnpm run clean:web",
+    "clean:api": "pnpm --filter api exec rimraf dist && pnpm --filter api exec rimraf node_modules",
+    "clean:web": "pnpm --filter web exec rimraf .next && pnpm --filter web exec rimraf node_modules",
+    "clean:all": "rimraf node_modules apps/*/node_modules apps/*/dist apps/*/.next pnpm-lock.yaml",
+    "install:all": "pnpm install",
+    "reinstall": "pnpm run clean:all && pnpm install",
+    "symlink": "pnpm install --frozen-lockfile",
+    "setup": "pnpm run clean:all && pnpm install && pnpm run symlink:verify",
+    "symlink:verify": "pnpm list --recursive --depth=0",
+    "symlink:fix": "pnpm install --force"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "rimraf": "^6.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/solana-playground.git"
+  },
+  "keywords": [
+    "solana",
+    "blockchain",
+    "nestjs",
+    "nextjs",
+    "react",
+    "typescript",
+    "monorepo"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "packageManager": "pnpm@9.0.0"
+}
