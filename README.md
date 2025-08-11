@@ -10,6 +10,15 @@ apps/
 └── package.json  # Root package.json for monorepo management
 ```
 
+### Setup (Important)
+```bash
+# Start both API and Web in development mode
+cp ./apps/api/.env.example ./apps/api/.env
+cp ./apps/web/.env.example ./apps/web/.env
+pnpm run setup
+```
+
+
 ### Development
 ```bash
 # Start both API and Web in development mode
