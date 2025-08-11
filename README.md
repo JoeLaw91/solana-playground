@@ -10,6 +10,11 @@ apps/
 └── package.json  # Root package.json for monorepo management
 ```
 
+### Point npm to v22
+```bash
+nvm use 22
+```
+
 ### Setup (Important)
 ```bash
 # Start both API and Web in development mode
